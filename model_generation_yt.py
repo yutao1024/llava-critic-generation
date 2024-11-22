@@ -55,8 +55,8 @@ class CustomDataset(Dataset):
         
         qs = qs.replace('<image>','').strip()
         #yt
-        qs = DEFAULT_IMAGE_TOKEN + '\n' + qs
-        # qs ="<image>\n" + qs
+        #qs = DEFAULT_IMAGE_TOKEN + '\n' + qs
+        qs ="<image>\n" + qs
         
         conv = conv_templates[args.conv_mode].copy()
         conv.append_message(conv.roles[0], qs)
@@ -175,7 +175,7 @@ if __name__ == "__main__":
     # sampling strategy follows simpo
     # nohup python tmp/model_generation.py --num-chunks 6 --chunk-idx 5 >> tmp/llava16_chunk-6-outof-6.log 2>&1 &
     # parser.add_argument("--rm-model-path", type=str, default="../model/alignment/llava16_llava_rlhf_reward_model_lr1e_5_bsz128_freevision_reward_model_coefficent")
-    parser.add_argument("--model-path", type=str, default="lmms-lab/llava-critic-7b")
+    parser.add_argument("--model-path", type=str, default="lmms-lab/llava-onevision-qwen2-7b-ov-chat")
     parser.add_argument("--model-base", type=str, default=None)
     parser.add_argument("--image-folder", type=str, default="./coco/train2017/train2017")
     parser.add_argument("--question-file", type=str, default="llava_7b_v1_preference.jsonl")
